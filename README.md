@@ -53,6 +53,40 @@ and set `VITE_GOOGLE_CLIENT_ID` in `.env.local`.
 - `/app/notifications`, `/app/profile`, `/app/profile/edit`
 - `/landing` — desktop landing page
 
+## Features
+
+- **CSV Export**:
+  - Export filtered or all transactions directly from the **Transactions** screen header with a single click.
+  - Export full transaction history anytime from **Profile** → **Support** → **Export my data**.
+  - RFC 4180 compliant CSV formatting with Excel/Google Sheets formula injection protection and UTF-8 BOM encoding.
+
+## Deploying on Render
+
+SpendWell is optimized for one-click deployment as a **Render Static Site**:
+
+### Method 1: Using Render Blueprint (Automatic)
+
+1. Push this repository to GitHub (or GitLab).
+2. Log in to [Render Dashboard](https://dashboard.render.com).
+3. Click **New +** → **Blueprint**.
+4. Connect your SpendWell repository.
+5. Render will detect [`render.yaml`](file:///d:/SpendWell%20App/render.yaml) automatically, configure the build settings and SPA rewrites (`/* -> /index.html`), and deploy the app!
+
+### Method 2: Manual Static Site Setup
+
+1. Click **New +** → **Static Site** in the Render Dashboard.
+2. Select your repository.
+3. Configure the following settings:
+   - **Name**: `spendwell`
+   - **Branch**: `main`
+   - **Build Command**: `npm install && npm run build`
+   - **Publish Directory**: `dist`
+4. Under **Redirects/Rewrites**:
+   - **Type**: `Rewrite`
+   - **Source**: `/*`
+   - **Destination**: `/index.html`
+5. Click **Create Static Site**.
+
 ## Data layer
 
 `src/api/client.ts` selects the implementation. Mock mode is the default and persists to `localStorage`:
